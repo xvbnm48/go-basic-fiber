@@ -22,6 +22,12 @@ func main() {
 		}()
 		return c.SendString("sakura endo")
 	})
+
+	api.Get("/:name", func(c *fiber.Ctx) error {
+		name := c.Params("name")
+		response := fmt.Sprintf("Hello , %s", name)
+		return c.Send([]byte(response))
+	})
 	api.Get("/nako", func(c *fiber.Ctx) error {
 		go func() {
 			time.Sleep(time.Second)
